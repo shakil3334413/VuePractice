@@ -5,8 +5,17 @@
  */
 
 require('./bootstrap');
+import axios from 'axios';
 
 window.Vue = require('vue');
+import VueRouter from 'vue-router'
+Vue.use(VueRouter);
+
+
+
+// Import Vue-Router
+
+// import router from './router';
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +28,11 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('sidebar-component', require('./components/backend/pages/Sidebar.vue').default);
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,6 +40,19 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+const routes = [
+    { path: '/admin', component: require('./components/backend/pages/Home.vue').default },
+    { path: '/admin/category', component: require('./components/backend/pages/Category.vue').default },
+    { path: '/admin/category/update', component: require('./components/backend/pages/CategoryUpdate.vue').default }
+  ]
+
+const router = new VueRouter({
+    mode: 'history',
+    routes // short for `routes: routes`
+  });
+
 const app = new Vue({
     el: '#app',
+    router
 });
+
