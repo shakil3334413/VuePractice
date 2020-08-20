@@ -61,9 +61,20 @@ public function create()
      * @param  \App\Model\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($category)
     {
-        //
+        $category=Category::findOrfail($category);
+        if($category){
+            return response()->json([
+                'success' =>true,
+                'category'=>$category
+            ]);
+        }else{
+            return response()->json([
+                'success' => false,
+                'message' => "Something went worng.."
+            ]);
+        }
     }
 
     /**
@@ -95,7 +106,7 @@ public function create()
      * @param  \App\Model\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request,$category)
     {
         $request->validate([
             'name' => 'required'
@@ -106,7 +117,7 @@ public function create()
         if($department->save()){
             return response()->json([
                 'success' => true,
-                'category' => $category
+                'category' => $department
             ],201);
         }else{
             return response()->json([

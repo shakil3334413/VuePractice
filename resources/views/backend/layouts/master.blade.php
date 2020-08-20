@@ -53,6 +53,7 @@
                                 <ul class="sub-menu children dropdown-menu">
                                     <li>
                                         <router-link to="/admin/category"><i class="fa fa-puzzle-piece"></i>Category Add</router-link>
+                                        <router-link to="/admin/subcategory"><i class="fa fa-puzzle-piece"></i>Sub Category Add</router-link>
                                     </li>
                                     <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Badges</a></li>
                                     <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Tabs</a></li>
@@ -258,6 +259,7 @@
         </div>
     </div>
     <script src="{{ mix('/js/app.js') }}"></script>
+
     <script src="{{ asset('backend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('backend/js/custom.min.js') }}"></script>
@@ -268,11 +270,11 @@
     <script src="{{ asset('backend/js/Chart.bundle.js') }}"></script>
     <script src="{{ asset('backend/js/chartist.min.js') }}"></script>
     <script src="{{ asset('backend/js/chartist-plugin-legend.js') }}"></script>
-    <script src="{{ asset('backend/js/fullcalendar.min.js') }}"></script>
-    <script src="{{ asset('backend/js/fullcalendar-init.js') }}"></script>
-    <script src="{{ asset('backend/js/jquery.flot.js') }}"></script>
+    {{-- <script src="{{ asset('backend/js/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('backend/js/fullcalendar-init.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/js/jquery.flot.js') }}"></script>
     <script src="{{ asset('backend/js/jquery.flot.pie.js') }}"></script>
-    <script src="{{ asset('backend/js/jquery.flot.spline.js') }}"></script>
+    <script src="{{ asset('backend/js/jquery.flot.spline.js') }}"></script> --}}
     <script src="{{ asset('backend/js/jquery.simpleWeather.min.js') }}"></script>
     <script src="{{ asset('backend/js/moment.js') }}"></script>
     <script src="{{ asset('backend/js/plugins.js') }}"></script>

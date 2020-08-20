@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="card">
-                <div class="card-header"><strong>Category Add</strong></div>
+                <div class="card-header"><strong>Category {{ !editmode ? "Add" : "Edit" }}</strong></div>
                 <div class="card-body card-block">
-                    <form  @submit.prevent="storedata()">
-                    
+                    <form  @submit.prevent="editmode ? updatedata() : storedata()">
+
                         <div class="form-group">
                             <label for="company" class=" form-control-label">Company</label>
                             <input type="text" v-model="name" id="name" placeholder="Enter your Category name" class="form-control" :class="err.name ? 'is-invalid' : ''">
@@ -34,7 +34,7 @@
                                 <tr v-for="(item, index) in category" :key="index">
                                     <th scope="row">{{ index+=1 }}</th>
                                     <td>{{ item.name }}</td>
-                                    <td><a @click="deleteEl(item.id)">Delet</a> | Edit</td>
+                                    <td><a @click="deleteEl(item.id)">Delet</a> | <a @click="editdata(item.id)">Edit</a> </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -48,9 +48,11 @@
 export default {
     data(){
         return {
+            id : '',
             name:'',
             err : [],
-            category : []
+            category : [],
+            editmode:false,
         }
     },
     mounted(){
@@ -59,6 +61,7 @@ export default {
 
     methods: {
         storedata(){
+            this.editmode=false
             this.err = []
             let fn = new FormData()
             fn.append('name',this.name)
@@ -92,8 +95,37 @@ export default {
             .catch(err=>{
                 console.log(err)
             })
+        },
+        editdata(id){
+            this.editmode=true
+            axios.get('/api/category/'+ id)
+            .then((res)=>{
+                this.name = res.data.category.name
+                this.id = res.data.category.id
+                console.log(res)
+            })
+            .catch(error=>{
+                this.err = error.response.data.errors
+            })
+        },
+
+        updatedata()
+        {
+            let fn = new FormData()
+            fn.append('name',this.name)
+            axios.put('/api/category/'+ this.id, {name : this.name})
+            .then((res)=>{
+                console.log("updated");
+                this.editmode = false
+                this.getData()
+                this.name = ''
+                this.id = ''
+            })
+            .catch(error=>{
+                this.err = error.response.data.errors
+            })
         }
-        
+
     },
 }
 </script>

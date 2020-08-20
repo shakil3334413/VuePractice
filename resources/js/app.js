@@ -42,8 +42,11 @@ Vue.component('sidebar-component', require('./components/backend/pages/Sidebar.v
 
 const routes = [
     { path: '/admin', component: require('./components/backend/pages/Home.vue').default },
+    { path: '/admin/subcategory', component: require('./components/backend/pages/SubCategory.vue').default },
+    { path: '/admin/subcategoryup/:id', component: require('./components/backend/pages/SubCategoryUpdate.vue').default },
     { path: '/admin/category', component: require('./components/backend/pages/Category.vue').default },
-    { path: '/admin/category/update', component: require('./components/backend/pages/CategoryUpdate.vue').default }
+    { path: '/admin/register', component: require('./components/backend/pages/AdminRegister.vue').default },
+    { path: '/admin/login', component: require('./components/backend/pages/AdminLogin.vue').default }
   ]
 
 const router = new VueRouter({

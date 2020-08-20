@@ -20,6 +20,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('/category','CategoryController@index');
+Route::get('/category/{id}','CategoryController@show');
 Route::post('/category','CategoryController@store');
-Route::put('/category/{category}','CategoryController@store');
+Route::put('/category/{category}','CategoryController@update');
 Route::delete('/category/{category}','CategoryController@destroy');
+
+Route::get('/subcategory','SubCategoryController@index');
+Route::get('/subcategory/create','SubCategoryController@create');
+Route::get('/subcategory/{subCategory}','SubCategoryController@show');
+Route::get('/subcategory/edit/{subCategory}','SubCategoryController@edit');
+Route::post('/subcategory','SubCategoryController@store');
+Route::put('/subcategory/{subCategory}','SubCategoryController@update');
+Route::delete('/subcategory/{subCategory}','SubCategoryController@destroy');
